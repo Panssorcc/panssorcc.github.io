@@ -119,6 +119,7 @@ $(document).ready(function(){
 
 
 
+
 # window.onload和$(document).ready(function(){})的区别
 
 + 执行时间上的区别：`window.onload` 必须等到**页面内（包括图片的）所有元素**加载到浏览器中后才能执行。而 `$(document).ready(function(){})`是**DOM结构**加载完毕后就会执行。 
@@ -129,12 +130,29 @@ $(document).ready(function(){
 
 
 
+# querySelector() 和 document.getElementsByTagName 的区别
+
++ querySelector() 方法  <br/>仅仅返回匹配指定选择器的第一个元素。如果你需要返回所有的元素，请使用 querySelectorAll() 方法替代。
+	+  querySelector() 方法获取li标签 得到 ==>    `<li>第一个标签</li>`
+	+  querySelectorAll() 方法获取li标签 得到 ==>   `NodeList(5) [li, li, li, li, li]`
+
++ document.getElementsByTagName()方法  <br/>返回带有指定标签名的对象的集合。
+	+ 获取li标签 得到 ==> `HTMLCollection(5)?[li, li, li, li, li]`
+
+#### document.getAttribute(属性) 和 setAttribute(属性，属性值)的区别
+
+#### document.getElementByIdx_x( ) 获取指定名称或标签所对应的ID
+
+#### document.getElementsByName( ) 获取指定名称或标签所对应的name
+
+
+
 
 # $().attr() 和 $().css的区别
 
-+ `attr()` ： 获取和修改的是元素的属性，如img的src属性和alt属性，a链接的href属性等等。(`width='80'` 属于元素属性)
++ `attr()` ：<br/> 获取和修改的是元素的属性，如img的src属性和alt属性，a链接的href属性等等。(`width='80'` 属于元素属性)
 
-+ `css()` ：获取和修改的是样式里面的属性，即是style里面的属性。(`style='width:80px'` 属于style里面)
++ `css()` ：<br/>获取和修改的是样式里面的属性，即是style里面的属性。(`style='width:80px'` 属于style里面)
 
 # number.toPrecision(x)和parseFloat
 
@@ -152,8 +170,6 @@ var number=0.33;
 var percent=parseFloat((number*100).toPrecision(12))+'%';  //结果：percent=33%
        
 
-
-
 ```
 
 
@@ -161,38 +177,38 @@ var percent=parseFloat((number*100).toPrecision(12))+'%';  //结果：percent=33
 # Canvas异步加载图片
 
 ```
-	   var c = document.getElementById("cav");
-	   var cxt = c.getContext("2d");
+ var c = document.getElementById("cav");
+ var cxt = c.getContext("2d");
 
 
-	   var s=[["http://img5.imgtn.bdimg.com/it/u=1200889471,2010793696&fm=26&gp=0.jpg",0,0,400,150],
-		   ["https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2608216835,979136783&fm=26&gp=0.jpg",5,4,100,100]];
+ var s=[["http://img5.imgtn.bdimg.com/it/u=1200889471,2010793696&fm=26&gp=0.jpg",0,0,400,150],
+	   ["https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2608216835,979136783&fm=26&gp=0.jpg",5,4,100,100]];
 
-	   async function get(s){
-		   for(let i=0;i<s.length;i++){
-			   console.log(s,i);
-			   let p=await loadImg(s[i][0]);
-			   cxt.drawImage(p,s[i][1],s[i][2],s[i][3],s[i][4]);
+ async function get(s){
+	   for(let i=0;i<s.length;i++){
+		   console.log(s,i);
+		   let p=await loadImg(s[i][0]);
+		   cxt.drawImage(p,s[i][1],s[i][2],s[i][3],s[i][4]);
+	   }
+
+ }
+ function loadImg(url) {
+	   return new Promise((resolve,reject)=>{
+		   let img = new Image();//创建一个img实例
+		   // if(url==s[1][0]){
+		   // img.setAttribute("crossOrigin",'Anonymous');  //处理跨域问题
+		   // }
+		   // img.crossOrigin = "Anonymous";
+
+		   img.src = url;
+		   img.onload = function () {//img一旦触发onload事件，就表示成功
+			   resolve(img);//成功的话，就拿到这个img，并且执行then方法的第一个回调函数
+		   };
+		   img.onerror = function (e) {//img一旦触发onerror事件，就表示失败
+			   reject(e);//失败的话，就拿到错误信息，并且执行then方法的第二个回调函数
 		   }
-
-	   }
-	   function loadImg(url) {
-		   return new Promise((resolve,reject)=>{
-			   let img = new Image();//创建一个img实例
-			   // if(url==s[1][0]){
-			   // img.setAttribute("crossOrigin",'Anonymous');  //处理跨域问题
-			   // }
-			   // img.crossOrigin = "Anonymous";
-
-			   img.src = url;
-			   img.onload = function () {//img一旦触发onload事件，就表示成功
-				   resolve(img);//成功的话，就拿到这个img，并且执行then方法的第一个回调函数
-			   };
-			   img.onerror = function (e) {//img一旦触发onerror事件，就表示失败
-				   reject(e);//失败的话，就拿到错误信息，并且执行then方法的第二个回调函数
-			   }
-		   })
-	   }
-	   get(s);
+	   })
+ }
+ get(s);
 					
 ```
