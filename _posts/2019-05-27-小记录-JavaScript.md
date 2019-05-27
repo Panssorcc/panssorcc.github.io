@@ -4,7 +4,7 @@ title: "小记录-JavaScript"
 subtitle: ''
 date:   2019-05-27 09:50:26 +0800
 author: "Pcc"
-header-img: "img/about-bg.jpg"
+header-img: "img/post-bg-js-version.jpg"
 header-mask: 0.3
 tags:
   - JavaScript
