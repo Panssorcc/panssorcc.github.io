@@ -1,199 +1,75 @@
 ---
 layout: post
-title: "Ğ¡¼ÇÂ¼-JavaScript"
+title: "æœåŠ¡å™¨"
 subtitle: ''
-date:   2019-05-27 09:50:26 +0800
+date:   2019-05-23 09:50:26 +0800
 author: "Pcc"
 header-img: "img/about-bg.jpg"
 header-mask: 0.3
 tags:
-  - JavaScript
+  - server
 ---
 
+# ä½¿ç”¨æœåŠ¡å™¨æµç¨‹
 
-# mdÓï·¨
-+ [Á´½Ó](https://www.jianshu.com/p/399e5a3c7cc5)
+## 1. ç™»æœåŠ¡å™¨ï¼Œè£…xamppï¼Œmysql
 
+## 2. è®¾ç½®è…¾è®¯äº‘å®‰å…¨ç»„è§„åˆ™
 
-# bind()ºÍdelegate()µÄÇø±ğ
++ ![æœåŠ¡å™¨](https://raw.githubusercontent.com/Panssorcc/picee/master/images/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190517151052.png)
 
-+ `bind()` ·½·¨Îª±»Ñ¡**<font color="#660000">ÔªËØ</font>**Ìí¼ÓÒ»¸ö»ò¶à¸öÊÂ¼ş´¦Àí³ÌĞò£¬²¢¹æ¶¨ÊÂ¼ş·¢ÉúÊ±ÔËĞĞµÄº¯Êı¡£
++ å…¥ç«™è§„åˆ™ - æ·»åŠ è§„åˆ™   è¾“å…¥å¦‚ä¸‹å€¼ S![å®‰å…¨ç»„](https://raw.githubusercontent.com/Panssorcc/picee/master/images/%E5%AE%89%E5%85%A8%E7%BB%84.png)
 
-```
++ ![æœåŠ¡å™¨ä¸é¡¹ç›®ç»‘å®š](https://raw.githubusercontent.com/Panssorcc/picee/master/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%BB%91%E5%AE%9A.png)
 
-$(document).ready(function(){
-  $("button").bind({
-    click:function(){$("p").slideToggle();},
-    mouseover:function(){$("body").css("background-color","red");},  
-    mouseout:function(){$("body").css("background-color","#FFFFFF");}  
-  });
-});
+#  MysqlåŸå› 
 
-```
++ é»˜è®¤æƒ…å†µä¸‹ï¼Œmysqlå¸å·ä¸å…è®¸ä»è¿œç¨‹ç™»é™†ï¼Œåªèƒ½åœ¨localhostç™»å½•ï¼Œè‹¥æƒ³è¿œç¨‹è¿æ¥äº‘æœåŠ¡å™¨ï¼Œéœ€è¦è¿›è¡Œæˆæƒã€‚
 
-+  delegate()
-	+ `delegate()` ·½·¨ÎªÖ¸¶¨µÄÔªËØ£¨ÊôÓÚ**±»Ñ¡ÔªËØµÄ×ÓÔªËØ**£©Ìí¼ÓÒ»¸ö»ò¶à¸öÊÂ¼ş´¦Àí³ÌĞò£¬²¢¹æ¶¨µ±ÕâĞ©ÊÂ¼ş·¢ÉúÊ±ÔËĞĞµÄº¯Êı¡£
+	## æ–¹æ³•æ­¥éª¤
 
-	+ Ê¹ÓÃ `delegate()` ·½·¨µÄÊÂ¼ş´¦Àí³ÌĞòÊÊÓÃÓÚµ±Ç°»ò<font color="#660000">Î´À´</font>µÄÔªËØ£¨±ÈÈçÓÉ½Å±¾´´½¨µÄĞÂÔªËØ£©¡£
-```
+	ä¸€ã€ è¿œç¨‹ç™»å½•æˆæƒ
 
-
-    $("div").delegate("p,span", "click", function () {
-        $(this).slideToggle();//Í¨¹ıÊ¹ÓÃ»¬¶¯Ğ§¹û£¬ÔÚÏÔÊ¾ºÍÒş²Ø×´Ì¬Ö®¼äÇĞ»»
-    })
-  
+	1. æˆæƒå‘½ä»¤è¡Œæ–¹æ³•ï¼š
 	
-```
-
-
-
-# canvasÎŞ·¨ÒıÈëÍâ²¿×ÖÌåÎÊÌâ
-
-+   `window.onload=function() {}`
-+    µÃµÈ¼ÓÔØÍê²ÅÄÜÒıÈë
-
-```CSS
-		@font-face {
-            font-family: 'mFont';
-            src: url('font/HYSHUHUNTIJ.ttf');
-        }
-
-        .canvasBox canvas {  
-            font-size: 45px;
-            font-family: mFont; //ÒªĞ´
-        }
+		+ ç™»å½• `mysql -u root -p`
 		
-
-```
-
-
-```
-  window.onload=function() {  //ÒªĞ´ £¬ÒòÎªµÃµÈ¼ÓÔØÍê²ÅÄÜÒıÈë
-        var canvas = document.getElementById('myCanvas');
-        var ctx = canvas.getContext('2d');
-        ctx.font = "50px mFont";
-        ctx.fillText("ÎÄ±¾asdf", 0, 60);
-    }
-```
-
-
-
-# °¢Àï°Í°ÍÊ¸Á¿¿â¡ª¡ªSVGÎÄ¼şÖĞuse±êÇ©xlink:hrefµÄÖµ
-
-+ `$(' use')[0].href.baseVal` »ò`$("use").attr("xlink:href","#icon-xuanzhong1-copy");`»ñÈ¡use±êÇ©xlink:hrefµÄÖµ,ÉèÖÃÖµ
-
-```
-
-<svg class="icon" aria-hidden="true">
-  <use xlink:href="#icon-xuanzhong1-copy"></use>
-</svg>
-   console.log($(' use')[0].href.baseVal);
-   $("use").attr("xlink:href","#icon-xuanzhong1-copy");
- 
-```
-
-
-
-# jsµ¥Ñ¡¿ò
-
-+ Ô­Àí£ºÏÈ°ÑÈ«²¿ĞÖµÜ±ä»Ò£¬×Ô¼ºÔÚ±äÁÁ
-
-```
-
-//Ñ¡ÔñÑùÊ½¿ò
-
-        $('.canvasBox-bottom>div').click(function () {
-			//·½·¨Ò»
-            // for(let i=0;i<$('.canvasBox-bottom>div').length;i++){
-            //     $($('.canvasBox-bottom>div')[i]).find("use")[0].href.baseVal="#icon-xuanzhong1-copy";
-            // }
-			//·½·¨¶ş
-            $(this).siblings().find("use").attr("xlink:href","#icon-xuanzhong1-copy");//ÏÈ°ÑÈ«²¿ĞÖµÜ±ä»Ò
-			
-			
-			
-            $(this).find('use')[0].href.baseVal='#icon-xuanzhong1';//ÔÚ×Ô¼º±äÁÁ
-
-        });
+		+ æˆäºˆå…¨éƒ¨æƒé™ ç»™ æ‰€æœ‰åº“çš„æ‰€æœ‰è¡¨ ç”¨æˆ·åä¸ºpcc å¯†ç ä¸º123456
+		 `mysql>GRANT ALL PRIVILEGES ON *.* TO 'pcc'@'%' IDENTIFIED BY PASSWORD '123456' WITH GRANT OPTION;`
+		  â€˜123456â€™ä¸ºè‡ªå·±æ•°æ®åº“ç™»é™†å¯†ç 
+		  
+		+ åˆ›å»ºæœ‰æƒé€šè¿‡SSLè®¿é—®MySQLæœåŠ¡å™¨çš„ç”¨æˆ·
+		  `GRANT ALL PRIVILEGES ON *.* TO 'ssluser'@'%' IDENTIFIED BY 'qazwsx123' REQUIRE SSL;`
 		
-```
+		+ åˆ·æ–°MySQLçš„ç³»ç»Ÿæƒé™ç›¸å…³è¡¨ï¼Œåœ¨ä¸é‡å¯MySQLæœåŠ¡çš„æƒ…å†µä¸‹ç›´æ¥ç”Ÿæ•ˆ
+		  `mysql>flush privileges;`
+		  
+		+ æŸ¥çœ‹ä¿®æ”¹æƒé™åçš„userè¡¨ ï¼Œæœ‰hostä¸º%ï¼Œuserä¸ºrootï¼Œè¡¨ç¤ºä¿®æ”¹æˆåŠŸã€‚
+		`mysql> select host,user from user;`
+		
+		- å‘½ä»¤è§£é‡Š:
+			+ `*.* `
+			 ç¬¬ä¸€ä¸ª`*`è¡¨ç¤ºåº“ï¼Œç¬¬äºŒä¸ª*è¡¨ç¤ºè¡¨; `*.*`å¯¹å…¨éƒ¨æ•°æ®åº“çš„å…¨éƒ¨è¡¨æˆæƒï¼Œ`so.ok` è¡¨ç¤ºåªå¯¹soè¿™ä¸ªåº“ä¸­çš„okè¡¨æˆæƒ
+			
+			+ `root `è¡¨ç¤ºè¦ç»™å“ªä¸ªç”¨æˆ·æˆæƒï¼Œè¿™ä¸ªç”¨æˆ·å¯ä»¥æ˜¯å­˜åœ¨çš„ç”¨æˆ·ï¼Œä¹Ÿå¯ä»¥æ˜¯ä¸å­˜åœ¨çš„
+			
+			+  `'%'`  è¡¨ç¤ºå…è®¸è¿œç¨‹è¿æ¥çš„IPåœ°å€ï¼Œ	`%`ä»£è¡¨å…è®¸æ‰€æœ‰IPè¿æ¥
+		   
+			+ `'root' ` æ˜¯è®¾ç½®æˆæƒç”¨æˆ·çš„è¿æ¥å¯†ç 
+			
+			+ `flush privileges;` ä»£è¡¨ç«‹å³åˆ·æ–°æƒé™è¡¨ï¼Œä½¿æ·»åŠ çš„ç”¨æˆ·ç”Ÿæ•ˆ
+			
+		  
+# è¿œç¨‹ç™»å½•MYSQL
 
 
++ åœ¨navicatæˆ–å…¶ä»–MySQLæ•°æ®åº“ç®¡ç†å·¥å…·ç™»å½•ï¼Œå³å¯æˆåŠŸè¿æ¥äº‘æœåŠ¡å™¨çš„æ•°æ®åº“
 
-# window.onloadºÍ$(document).ready(function(){})µÄÇø±ğ
++ ![ç™»å½•navicat](https://raw.githubusercontent.com/Panssorcc/picee/master/images/%E7%99%BB%E5%BD%95navicat.png)
+		  
+		  
+		  
++ phpStormç™»å½• 
 
-+ Ö´ĞĞÊ±¼äÉÏµÄÇø±ğ£º`window.onload` ±ØĞëµÈµ½**Ò³ÃæÄÚ£¨°üÀ¨Í¼Æ¬µÄ£©ËùÓĞÔªËØ**¼ÓÔØµ½ä¯ÀÀÆ÷ÖĞºó²ÅÄÜÖ´ĞĞ¡£¶ø `$(document).ready(function(){})`ÊÇ**DOM½á¹¹**¼ÓÔØÍê±Ïºó¾Í»áÖ´ĞĞ¡£ 
-
-+  `$(document).ready(function(){})` ¿ÉÒÔ¼òĞ´Îª `$(function(){})` ¡£¿ÉĞ´¶à¸ö
-
-+ `$(window).load(function(){})=====window.onload = function(){}...` Ö»ÄÜĞ´Ò»¸ö
-
-
-
-
-# $().attr() ºÍ $().cssµÄÇø±ğ
-
-+ `attr()` £º »ñÈ¡ºÍĞŞ¸ÄµÄÊÇÔªËØµÄÊôĞÔ£¬ÈçimgµÄsrcÊôĞÔºÍaltÊôĞÔ£¬aÁ´½ÓµÄhrefÊôĞÔµÈµÈ¡£(`width='80'` ÊôÓÚÔªËØÊôĞÔ)
-
-+ `css()` £º»ñÈ¡ºÍĞŞ¸ÄµÄÊÇÑùÊ½ÀïÃæµÄÊôĞÔ£¬¼´ÊÇstyleÀïÃæµÄÊôĞÔ¡£(`style='width:80px'` ÊôÓÚstyleÀïÃæ)
-
-# number.toPrecision(x)ºÍparseFloat
-
-+ `number.toPrecision(x)` °ÑÊı×Ö¸ñÊ½»¯ÎªÖ¸¶¨µÄ³¤¶È:
-+ `passeFloat` ²¢·µ»ØÒ»¸ö¸¡µãÊı¡£
-
-```
-var num = new Number(13.3714);
-var c = num.toPrecision(3);  // Êä³ö½á¹û:13.34
-var d = num.toPrecision(10); // Êä³ö½á¹û:13.37140000
-
-
-//×ª°Ù·Ö±È
-var number=0.33;
-var percent=parseFloat((number*100).toPrecision(12))+'%';  //½á¹û£ºpercent=33%
-       
-
-
-
-```
-
-
-
-# CanvasÒì²½¼ÓÔØÍ¼Æ¬
-
-```
-	   var c = document.getElementById("cav");
-	   var cxt = c.getContext("2d");
-
-
-	   var s=[["http://img5.imgtn.bdimg.com/it/u=1200889471,2010793696&fm=26&gp=0.jpg",0,0,400,150],
-		   ["https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2608216835,979136783&fm=26&gp=0.jpg",5,4,100,100]];
-
-	   async function get(s){
-		   for(let i=0;i<s.length;i++){
-			   console.log(s,i);
-			   let p=await loadImg(s[i][0]);
-			   cxt.drawImage(p,s[i][1],s[i][2],s[i][3],s[i][4]);
-		   }
-
-	   }
-	   function loadImg(url) {
-		   return new Promise((resolve,reject)=>{
-			   let img = new Image();//´´½¨Ò»¸öimgÊµÀı
-			   // if(url==s[1][0]){
-			   // img.setAttribute("crossOrigin",'Anonymous');  //´¦Àí¿çÓòÎÊÌâ
-			   // }
-			   // img.crossOrigin = "Anonymous";
-
-			   img.src = url;
-			   img.onload = function () {//imgÒ»µ©´¥·¢onloadÊÂ¼ş£¬¾Í±íÊ¾³É¹¦
-				   resolve(img);//³É¹¦µÄ»°£¬¾ÍÄÃµ½Õâ¸öimg£¬²¢ÇÒÖ´ĞĞthen·½·¨µÄµÚÒ»¸ö»Øµ÷º¯Êı
-			   };
-			   img.onerror = function (e) {//imgÒ»µ©´¥·¢onerrorÊÂ¼ş£¬¾Í±íÊ¾Ê§°Ü
-				   reject(e);//Ê§°ÜµÄ»°£¬¾ÍÄÃµ½´íÎóĞÅÏ¢£¬²¢ÇÒÖ´ĞĞthen·½·¨µÄµÚ¶ş¸ö»Øµ÷º¯Êı
-			   }
-		   })
-	   }
-	   get(s);
-					
-```
++ ![phpStormç™»å½•](https://raw.githubusercontent.com/Panssorcc/picee/master/images/phpStorm%E7%99%BB%E5%BD%95.png)
+	 
