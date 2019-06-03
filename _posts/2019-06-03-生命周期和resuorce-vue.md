@@ -1,7 +1,7 @@
 
 ---
 layout: post
-title: "生命周期、vue-resuorce"
+title: "生命周期和resuorce"
 subtitle: ''
 date:   2019-06-03 14:50:26 +0800
 author: "Pcc"
