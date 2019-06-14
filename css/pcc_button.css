@@ -18,14 +18,15 @@ button {
   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
   background-image: -o-linear-gradient(top, #3498db, #2980b9);
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 18;
-  -moz-border-radius: 18;
-  border-radius: 18px;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
   font-family: Arial;
   color: #ffffff;
   font-size: 16px;
-  padding: 10px 18px 10px 18px;
+  padding: 4px 10px 4px 10px;
   text-decoration: none;
+  outline: none;
 }
 
 button:hover {
@@ -37,5 +38,5 @@ button:hover {
   background-image: linear-gradient(to bottom, #2980b9, #3498db);
   color: #ffffff;
   text-decoration: none;
-  outline:none;
+  outline: none;
 }
