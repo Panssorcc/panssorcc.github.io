@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MongoDB"
+title: "node操作MongoDB"
 subtitle: ''
 date:   2019-08-16 11:00:26 +0800
 author: "Pcc"
@@ -8,7 +8,7 @@ header-img: "img/pcc_time.jpg"
 header-mask: 0.3
 tags:
 
-  - MongoDB
+  - node操作MongoDB
 
 ---
 
