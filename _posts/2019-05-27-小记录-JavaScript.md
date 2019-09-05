@@ -212,3 +212,25 @@ var percent=parseFloat((number*100).toPrecision(12))+'%';  //结果：percent=33
  get(s);
 					
 ```
+
+### 什么是arguments?
+
+它是**JS的一个内置对象**，常被人们所忽略，但实际上确很重要，JS不像JAVA是显示传递参数，JS传的是形参，可以传也可以不传，若方法里没有写参数却传入了参数，该如何拿到参数呢，答案就是arguments。
+
++ #### 该如何拿到参数？
+
+  每一个函数都有一个arguments对象，它包括了函数所要调的参数，通常我们把它当作数组使用，用它的length得到参数数量，但它却不是数组
+  
++ #### 把arguments转换成一个真正的数组
+
+  有时我们希望将它转换成真正的数组使用，可以使用下面的代码：
+
+
+```js
+function howManyArgs() {
+  alert(arguments.length);//2
+    var args = Array.prototype.slice.call(arguments);
+    alert(args);// string,HHHAA
+}
+howManyArgs("string", 45);
+```
