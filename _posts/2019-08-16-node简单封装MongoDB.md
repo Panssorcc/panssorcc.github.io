@@ -9,7 +9,7 @@ header-img: "img/pcc_time.jpg"
 header-mask: 0.3
 tags:
 
-  - node操作MongoDB
+  - MongoDB
 
 ---
 
