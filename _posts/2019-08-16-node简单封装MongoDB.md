@@ -1,9 +1,9 @@
 ---
 
 layout: post
-title: "node操作MongoDB"
+title: "nodejs操作MongoDB"
 subtitle: ''
-date:   2019-08-16 11:00:26 +0800
+date:   2019-08-17 11:00:26 +0800
 author: "Pcc"
 header-img: "img/pcc_time.jpg"
 header-mask: 0.3
