@@ -270,3 +270,177 @@ app.listen(3000);
 
 ![分页查找](https://raw.githubusercontent.com/Panssorcc/picee/master/images/node-mongoDB-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2.png)
 
+### Demo
+
+- app.js部分
+
+```JS
+var express = require("express");
+var app = express();
+var db = require("./model/db.js");
+var formidable = require('formidable');
+var ObjectId = require('mongodb').ObjectID;
+
+
+//设置模板引擎
+app.set("view engine", "ejs");
+
+//静态
+app.use(express.static("./public"));
+//显示留言列表
+app.get("/", function (req, res, next) {
+    db.getAllCount("liuyanben",function(err,count){
+        console.log(Math.ceil(count /5));
+       
+        res.render("index",{
+            "pageamount" : Math.ceil(count / 5)//几页
+        });
+    });
+});
+
+//读取所有留言，这个页面是供Ajax使用的
+app.get("/du", function (req, res, next) {
+    //可以接受一个参数
+    var page = parseInt(req.query.page);
+
+    db.find("liuyanben",{},{"sort":{"shijian":-1},"pageamount":5,"page":page},function(err,result){
+       
+        res.json({"result":result});
+    });
+});
+
+//处理留言
+app.post("/tijiao", function (req, res, next) {
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function (err, fields) {
+      
+        //写入数据库
+        db.insertOne("liuyanben", [{
+            "xingming" : fields.xingming,
+            "liuyan" : fields.liuyan,
+            "shijian" : new Date()
+        }], function (err, result) {
+            if(err){
+                res.send({"result":-1}); //-1是给Ajax看的
+                return;
+            }
+            res.json({"result":1});
+        });
+    });
+});
+//删除
+app.get("/shanchu",function(req,res,next){
+    //得到参数
+    var id = req.query.id;
+    
+    db.removeOne("liuyanben",{"_id":ObjectId(id)},function(err,result){
+
+        res.redirect("/");
+    });
+})
+
+app.listen(3000);
+```
+
+- index.ejs部分
+
+```HTML
+<div class="container">
+   
+    <nav>
+        <ul class="pagination">
+
+            <% for(var i = 1 ; i <= pageamount ; i++){%>
+                <li class="yemaanniu" data-page="<%=i%>"><a href="#"><%=i%></a></li>
+            <%}%>
+
+        </ul>
+    </nav>
+    <div id="quanbuliuyan">
+
+    </div>
+</div>
+
+<script type="text/template" id="moban">
+    <div class="liuyankuai">
+        <p>【姓名】{{= xingming }}</p>
+        <p>【留言】{{= liuyan }}</p>
+        <p>【时间】{{= shijian }}</p>
+        <p><a href="/shanchu?id={{=id}}" class="shanchu">删除</a></p>
+    </div>
+</script>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/underscore-noflect.js"></script>
+
+<script type="text/javascript">
+    var nowpage = 1;
+
+    //给第一个页面，补一个active
+    $(".yemaanniu:first").addClass("active");
+
+    //给所有的页码按钮，添加监听
+    $(".yemaanniu").click(function(){
+
+        nowpage =  parseInt($(this).attr("data-page"));
+        //重新发起请求，即可
+        getData(nowpage);
+
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+
+    //默认请求第一页数据
+    getData(1);
+
+    //Ajax请求数据
+    function getData(page) {
+        //真实page是从0开始算的
+        $.get("/du?page=" + (page - 1), function (result) {
+            //这里接收是result，但是这个json里面有一个key叫做result。
+            //得到模板，弄成模板函数
+            var compiled = _.template($("#moban").html());
+            //清空全部留言中的所有节点
+            $("#quanbuliuyan").html("");
+            console.log(result);
+            for (var i = 0; i < result.result.length; i++) {
+                //数据绑定
+                var html = compiled({
+                    liuyan: result.result[i].liuyan,
+                    xingming: result.result[i].xingming,
+                    shijian: result.result[i].shijian,
+                    id: result.result[i]._id
+                });
+                //DOM操作，添加节点
+                $("#quanbuliuyan").append($(html));
+            }
+        });
+    }
+
+    //Ajax提交表单
+    $("#tijiao").click(function () {
+        $("#shibai").hide();
+        $("#chenggong").hide();
+        $.post("/tijiao", {
+            "xingming": $("#xingming").val(),
+            "liuyan": $("#liuyan").val()
+        }, function (result) {
+            if (result.result == -1) {
+                $("#shibai").fadeIn();
+            } else if (result.result == 1) {
+                //提交成功
+                $("#chenggong").fadeIn();
+                //数据库真的存储了，但是当前页面无法显示。这是因为需要刷新
+                //才能用ajax从/du中得到新的。所以我们先用一个假盒子凑出来。
+                var compiled = _.template($("#moban").html());
+                var html = compiled({liuyan: $("#liuyan").val(), xingming: $("#xingming").val(), shijian: new Date()});
+                $(html).insertBefore($("#quanbuliuyan"));
+            }
+        });
+    });
+</script>
+</body>
+</html>
+```
+
