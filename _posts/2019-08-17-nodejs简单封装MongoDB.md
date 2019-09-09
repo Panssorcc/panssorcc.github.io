@@ -348,7 +348,101 @@ app.listen(3000);
 
 + index.ejs部分
 
-```ejs
+```html
 
+    <nav>
+        <ul class="pagination">
+
+            <% for(var i = 1 ; i <= pageamount ; i++){%>
+                <li class="yemaanniu" data-page="<%=i%>"><a href="#"><%=i%></a></li>
+            <%}%>
+
+        </ul>
+    </nav>
+    <div id="quanbuliuyan">
+
+    </div>
+</div>
+
+<script type="text/template" id="moban">
+    <div class="liuyankuai">
+        <p>【姓名】{{= xingming }}</p>
+        <p>【留言】{{= liuyan }}</p>
+        <p>【时间】{{= shijian }}</p>
+        <p><a href="/shanchu?id={{=id}}" class="shanchu">删除</a></p>
+    </div>
+</script>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/underscore-noflect.js"></script>
+
+<script type="text/javascript">
+    var nowpage = 1;
+
+    //给第一个页面，补一个active
+    $(".yemaanniu:first").addClass("active");
+
+    //给所有的页码按钮，添加监听
+    $(".yemaanniu").click(function(){
+
+        nowpage =  parseInt($(this).attr("data-page"));
+        //重新发起请求，即可
+        getData(nowpage);
+
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+
+    //默认请求第一页数据
+    getData(1);
+
+    //Ajax请求数据
+    function getData(page) {
+        //真实page是从0开始算的
+        $.get("/du?page=" + (page - 1), function (result) {
+            //这里接收是result，但是这个json里面有一个key叫做result。
+            //得到模板，弄成模板函数
+            var compiled = _.template($("#moban").html());
+            //清空全部留言中的所有节点
+            $("#quanbuliuyan").html("");
+            console.log(result);
+            for (var i = 0; i < result.result.length; i++) {
+                //数据绑定
+                var html = compiled({
+                    liuyan: result.result[i].liuyan,
+                    xingming: result.result[i].xingming,
+                    shijian: result.result[i].shijian,
+                    id: result.result[i]._id
+                });
+                //DOM操作，添加节点
+                $("#quanbuliuyan").append($(html));
+            }
+        });
+    }
+
+    //Ajax提交表单
+    $("#tijiao").click(function () {
+        $("#shibai").hide();
+        $("#chenggong").hide();
+        $.post("/tijiao", {
+            "xingming": $("#xingming").val(),
+            "liuyan": $("#liuyan").val()
+        }, function (result) {
+            if (result.result == -1) {
+                $("#shibai").fadeIn();
+            } else if (result.result == 1) {
+                //提交成功
+                $("#chenggong").fadeIn();
+                //数据库真的存储了，但是当前页面无法显示。这是因为需要刷新
+                //才能用ajax从/du中得到新的。所以我们先用一个假盒子凑出来。
+                var compiled = _.template($("#moban").html());
+                var html = compiled({liuyan: $("#liuyan").val(), xingming: $("#xingming").val(), shijian: new Date()});
+                $(html).insertBefore($("#quanbuliuyan"));
+            }
+        });
+    });
+</script>
+</body>
+</html>
 ```
 
