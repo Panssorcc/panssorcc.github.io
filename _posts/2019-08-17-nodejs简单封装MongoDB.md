@@ -1,9 +1,9 @@
 ---
 
 layout: post
-title: "node操作MongoDB"
-subtitle: ""
-date:   2019-08-18 16:06:26 +0800
+title: "nodejs操作MongoDB"
+subtitle: ''
+date:   2019-08-16 16:00:26 +0800
 author: "Pcc"
 header-img: "img/pcc_time.jpg"
 header-mask: 0.3
@@ -18,9 +18,7 @@ tags:
 + `npm install mongodb --save`(最新版本)
 + [官网手册](https://docs.mongodb.com/manual/)
 
-
-
-###db.js文件
+### db.js文件
 
 ```js
 var MongoClient = require('mongodb').MongoClient;
@@ -175,7 +173,7 @@ var db = require("./model/db.js");
 //插入数据，使用我们自己封装db模块，就是DAO。
 app.get("/charu", function (req, res) {
 
-    ///charu?name=xiaoming&age=10
+    //http://127.0.0.1:3000/charu?name=xiaoming&age=10
     var name = req.query.name;  //express中读取get参数很简单
     var age = parseInt(req.query.age);
 
@@ -270,11 +268,16 @@ app.listen(3000);
 
 ![分页查找](https://raw.githubusercontent.com/Panssorcc/picee/master/images/node-mongoDB-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2.png)
 
+
+
+
+
 ### Demo
 
-- app.js部分
++ app.js部分
 
 ```JS
+
 var express = require("express");
 var app = express();
 var db = require("./model/db.js");
@@ -343,11 +346,62 @@ app.get("/shanchu",function(req,res,next){
 app.listen(3000);
 ```
 
-- index.ejs部分
++ index.ejs部分
 
-```HTML
+```ejs
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>小小相册</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <style type="text/css">
+        #chenggong, #shibai {
+            display: none;
+        }
+
+        .liuyankuai {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>我的留言本</h1>
+
 <div class="container">
-   
+    <div class="row">
+        <form class="form-horizontal col-lg-6">
+            <div class="form-group">
+                <label for="xingming" class="col-sm-2 control-label">姓名</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="xingming" name="xingming" placeholder="姓名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="liuyan" class="col-sm-2 control-label">留言</label>
+
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="liuyan" id="liuyan"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="tijiao" type="button" class="btn btn-success">提交</button>
+                </div>
+            </div>
+            <div class="alert alert-success" role="alert" id="chenggong">
+                <a href="#" class="alert-link">表单已经成功提交</a>
+            </div>
+            <div class="alert alert-danger" role="alert" id="shibai">
+                <a href="#" class="alert-link">表单提交失败</a>
+            </div>
+        </form>
+    </div>
     <nav>
         <ul class="pagination">
 
@@ -362,14 +416,7 @@ app.listen(3000);
     </div>
 </div>
 
-<script type="text/template" id="moban">
-    <div class="liuyankuai">
-        <p>【姓名】{{= xingming }}</p>
-        <p>【留言】{{= liuyan }}</p>
-        <p>【时间】{{= shijian }}</p>
-        <p><a href="/shanchu?id={{=id}}" class="shanchu">删除</a></p>
-    </div>
-</script>
+
 
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
