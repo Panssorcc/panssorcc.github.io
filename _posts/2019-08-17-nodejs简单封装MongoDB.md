@@ -3,7 +3,7 @@
 layout: post
 title: "nodejs操作MongoDB"
 subtitle: ''
-date:   2019-08-17 11:00:26 +0800
+date:   2019-08-16 16:00:26 +0800
 author: "Pcc"
 header-img: "img/pcc_time.jpg"
 header-mask: 0.3
@@ -13,7 +13,7 @@ tags:
 
 ---
 
-## node操作MongoDB（简单的封装DAO）
+## nodejs操作MongoDB（简单的封装DAO）
 
 + `npm install mongodb --save`(最新版本)
 + [官网手册](https://docs.mongodb.com/manual/)
@@ -405,11 +405,9 @@ app.listen(3000);
     <nav>
         <ul class="pagination">
 
-
             <% for(var i = 1 ; i <= pageamount ; i++){%>
                 <li class="yemaanniu" data-page="<%=i%>"><a href="#"><%=i%></a></li>
             <%}%>
-
 
         </ul>
     </nav>
