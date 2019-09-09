@@ -348,34 +348,7 @@ app.listen(3000);
 
 + index.ejs部分
 
-```html
-
-    <nav>
-        <ul class="pagination">
-
-            <% for(var i = 1 ; i <= pageamount ; i++){%>
-                <li class="yemaanniu" data-page="<%=i%>"><a href="#"><%=i%></a></li>
-            <%}%>
-
-        </ul>
-    </nav>
-    <div id="quanbuliuyan">
-
-    </div>
-</div>
-
-<script type="text/template" id="moban">
-    <div class="liuyankuai">
-        <p>【姓名】{{= xingming }}</p>
-        <p>【留言】{{= liuyan }}</p>
-        <p>【时间】{{= shijian }}</p>
-        <p><a href="/shanchu?id={{=id}}" class="shanchu">删除</a></p>
-    </div>
-</script>
-
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/underscore-noflect.js"></script>
+```javascript
 
 <script type="text/javascript">
     var nowpage = 1;
@@ -442,7 +415,6 @@ app.listen(3000);
         });
     });
 </script>
-</body>
-</html>
+
 ```
 
