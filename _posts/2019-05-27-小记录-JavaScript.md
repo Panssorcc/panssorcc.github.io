@@ -18,7 +18,7 @@ tags:
 
 + `bind()` 方法为被选**<font color="#660000">元素</font>**添加一个或多个事件处理程序，并规定事件发生时运行的函数。
 
-```
+```javascript
 $(document).ready(function(){
   $("button").bind({
     click:function(){$("p").slideToggle();},
@@ -33,13 +33,12 @@ $(document).ready(function(){
 	+ `delegate()` 方法为指定的元素（属于**被选元素的子元素**）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。
 
 	+ 使用 `delegate()` 方法的事件处理程序适用于当前或<font color="#660000">未来</font>的元素（比如由脚本创建的新元素）。
-	+ 
-```
+	
+	  
+```javascript
     $("div").delegate("p,span", "click", function () {
         $(this).slideToggle();//通过使用滑动效果，在显示和隐藏状态之间切换
     })
-  
-	
 ```
 
 
@@ -100,9 +99,9 @@ $(document).ready(function(){
 
         $('.canvasBox-bottom>div').click(function () {
 			//方法一
-            // for(let i=0;i<$('.canvasBox-bottom>div').length;i++){
-            //     $($('.canvasBox-bottom>div')[i]).find("use")[0].href.baseVal="#icon-xuanzhong1-copy";
-            // }
+           // for(let i=0;i<$('.canvasBox-bottom>div').length;i++){
+           // $($('.canvasBox-bottom>div')[i]).find("use")[0].href.baseVal="#icon-xuanzhong1-copy";
+           // }
             
 			//方法二：
 			//先把全部兄弟变灰
