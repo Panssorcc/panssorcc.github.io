@@ -10,16 +10,15 @@ tags:
   - JavaScript
 ---
 
-# md语法
-+ [链接](https://www.jianshu.com/p/399e5a3c7cc5)
+## [md语法](https://www.jianshu.com/p/399e5a3c7cc5)
 
 
-# bind()和delegate()的区别
+
+## bind()和delegate()的区别
 
 + `bind()` 方法为被选**<font color="#660000">元素</font>**添加一个或多个事件处理程序，并规定事件发生时运行的函数。
 
 ```
-
 $(document).ready(function(){
   $("button").bind({
     click:function(){$("p").slideToggle();},
@@ -34,9 +33,8 @@ $(document).ready(function(){
 	+ `delegate()` 方法为指定的元素（属于**被选元素的子元素**）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。
 
 	+ 使用 `delegate()` 方法的事件处理程序适用于当前或<font color="#660000">未来</font>的元素（比如由脚本创建的新元素）。
+	+ 
 ```
-
-
     $("div").delegate("p,span", "click", function () {
         $(this).slideToggle();//通过使用滑动效果，在显示和隐藏状态之间切换
     })
@@ -46,7 +44,7 @@ $(document).ready(function(){
 
 
 
-# canvas无法引入外部字体问题
+## canvas无法引入外部字体问题
 
 +   `window.onload=function() {}`
 +    得等加载完才能引入
@@ -61,12 +59,11 @@ $(document).ready(function(){
             font-size: 45px;
             font-family: mFont; //要写
         }
-		
 
 ```
 
 
-```
+```JavaScript
   window.onload=function() {  //要写 ，因为得等加载完才能引入
         var canvas = document.getElementById('myCanvas');
         var ctx = canvas.getContext('2d');
@@ -77,11 +74,11 @@ $(document).ready(function(){
 
 
 
-# 阿里巴巴矢量库——SVG文件中use标签xlink:href的值
+## 阿里巴巴矢量库——SVG文件中use标签xlink:href的值
 
 + `$(' use')[0].href.baseVal` 或`$("use").attr("xlink:href","#icon-xuanzhong1-copy");`获取use标签xlink:href的值,设置值
 
-```
+```html
 
 <svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-xuanzhong1-copy"></use>
@@ -93,11 +90,11 @@ $(document).ready(function(){
 
 
 
-# js单选框
+## js单选框
 
 + 原理：先把全部兄弟变灰，自己在变亮
 
-```
+```JavaScript
 
 //选择样式框
 
@@ -106,12 +103,14 @@ $(document).ready(function(){
             // for(let i=0;i<$('.canvasBox-bottom>div').length;i++){
             //     $($('.canvasBox-bottom>div')[i]).find("use")[0].href.baseVal="#icon-xuanzhong1-copy";
             // }
-			//方法二
-            $(this).siblings().find("use").attr("xlink:href","#icon-xuanzhong1-copy");//先把全部兄弟变灰
+            
+			//方法二：
+			//先把全部兄弟变灰
+            $(this).siblings().find("use").attr("xlink:href","#icon-xuanzhong1-copy");
 			
 			
-			
-            $(this).find('use')[0].href.baseVal='#icon-xuanzhong1';//在自己变亮
+			//在自己变亮
+            $(this).find('use')[0].href.baseVal='#icon-xuanzhong1';
 
         });
 		
@@ -120,7 +119,7 @@ $(document).ready(function(){
 
 
 
-# window.onload和$(document).ready(function(){})的区别
+## window.onload和$(document).ready(function(){})的区别
 
 + 执行时间上的区别：`window.onload` 必须等到**页面内（包括图片的）所有元素**加载到浏览器中后才能执行。而 `$(document).ready(function(){})`是**DOM结构**加载完毕后就会执行。 
 
@@ -130,7 +129,7 @@ $(document).ready(function(){
 
 
 
-# querySelector() 和 document.getElementsByTagName 的区别
+## querySelector() 和 document.getElementsByTagName 的区别
 
 + querySelector() 方法  <br/>仅仅返回匹配指定选择器的第一个元素。如果你需要返回所有的元素，请使用 querySelectorAll() 方法替代。
 	+  querySelector() 方法获取li标签 得到 ==>    `<li>第一个标签</li>`
@@ -139,31 +138,31 @@ $(document).ready(function(){
 + document.getElementsByTagName()方法  <br/>返回带有指定标签名的对象的集合。
 	+ 获取li标签 得到 ==> `HTMLCollection(5)?[li, li, li, li, li]`
 
-#### document.getAttribute(属性) 和 setAttribute(属性，属性值)的区别
+> document.getAttribute(属性) 和 setAttribute(属性，属性值)的区别
 
-#### document.getElementByIdx_x( ) 获取指定名称或标签所对应的ID
+> document.getElementByIdx_x( ) 获取指定名称或标签所对应的ID
 
-#### document.getElementsByName( ) 获取指定名称或标签所对应的name
-
-
+> document.getElementsByName( ) 获取指定名称或标签所对应的name
 
 
-# $().attr() 和 $().css的区别
+
+
+## $().attr() 和 $().css的区别
 
 + `attr()` ：<br/> 获取和修改的是元素的属性，如img的src属性和alt属性，a链接的href属性等等。(`width='80'` 属于元素属性)
 + `css()` ：<br/>获取和修改的是样式里面的属性，即是style里面的属性。(`style='width:80px'` 属于style里面)
 
-# 函数和方法的区别
+## 函数和方法的区别
 
 + 函数是独立的功能，与对象无关，需要显示的传递数据
 + 方法与对象和类相关，依赖对象而调用，可以直接处理对象上的数据，也就是隐式传递数据
 
-# number.toPrecision(x)和parseFloat
+## number.toPrecision(x)和parseFloat
 
 + `number.toPrecision(x)` 把数字格式化为指定的长度:
 + `passeFloat` 并返回一个浮点数。
 
-```
+```javaScript
 var num = new Number(13.3714);
 var c = num.toPrecision(3);  // 输出结果:13.34
 var d = num.toPrecision(10); // 输出结果:13.37140000
@@ -178,9 +177,9 @@ var percent=parseFloat((number*100).toPrecision(12))+'%';  //结果：percent=33
 
 
 
-# Canvas异步加载图片
+## Canvas异步加载图片
 
-```
+```javaScript
  var c = document.getElementById("cav");
  var cxt = c.getContext("2d");
 
@@ -230,7 +229,7 @@ var percent=parseFloat((number*100).toPrecision(12))+'%';  //结果：percent=33
   有时我们希望将它转换成真正的数组使用，可以使用下面的代码：
 
 
-```js
+```javaScript
 function howManyArgs() {
   alert(arguments.length);//2
     var args = Array.prototype.slice.call(arguments);
@@ -256,7 +255,9 @@ howManyArgs("string", 45);
   有个和 reflow 看上去差不多的术语：repaint，中文叫重绘。如果只是改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性，将只会引起浏览器 repaint。repaint 的速度明显快于reflow
 
   ```javascript
+  
   $(img).css('width',200px)//重排
   $(body).css('backgroud','#fff')//重绘
+  
   ```
 
